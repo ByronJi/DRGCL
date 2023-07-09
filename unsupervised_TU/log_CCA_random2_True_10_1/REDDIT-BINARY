@@ -1,0 +1,12 @@
+DS:REDDIT-BINARY,seed:0,layer_num:3,epochs:20,lr:0.01, select test value:0.8945
+{"val": [0.884, 0.8715, 0.882, 0.892], "test": [0.8895, 0.876, 0.8945, 0.8945]}
+DS:REDDIT-BINARY,seed:0,layer_num:3,epochs:20,lr:0.01, select test value:0.8935
+{"val": [0.8805, 0.8975, 0.88, 0.896], "test": [0.8745, 0.8935, 0.8865, 0.898]}
+DS:REDDIT-BINARY,seed:1,layer_num:3,epochs:20,lr:0.01, select test value:0.9025
+{"val": [0.905, 0.894, 0.8985, 0.91], "test": [0.894, 0.899, 0.903, 0.9025]}
+DS:REDDIT-BINARY,seed:2,layer_num:3,epochs:20,lr:0.01, select test value:0.8845
+{"val": [0.8835, 0.868, 0.8815, 0.881], "test": [0.8845, 0.873, 0.8985, 0.8875]}
+DS:REDDIT-BINARY,seed:3,layer_num:3,epochs:20,lr:0.01, select test value:0.9095
+{"val": [0.8805, 0.896, 0.9035, 0.9055], "test": [0.8755, 0.8965, 0.893, 0.9095]}
+DS:REDDIT-BINARY,seed:4,layer_num:3,epochs:20,lr:0.01, select test value:0.8875
+{"val": [0.873, 0.895, 0.8795, 0.9005], "test": [0.8745, 0.8895, 0.892, 0.8875]}

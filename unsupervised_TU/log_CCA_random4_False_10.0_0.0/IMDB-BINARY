@@ -1,0 +1,10 @@
+DS:IMDB-BINARY,seed:0,layer_num:3,epochs:20,lr:0.01, select test value:0.712
+{"val": [0.724, 0.714, 0.736, 0.717], "test": [0.707, 0.712, 0.712, 0.719]}
+DS:IMDB-BINARY,seed:1,layer_num:3,epochs:20,lr:0.01, select test value:0.705
+{"val": [0.687, 0.727, 0.701, 0.732], "test": [0.713, 0.717, 0.706, 0.705]}
+DS:IMDB-BINARY,seed:2,layer_num:3,epochs:20,lr:0.01, select test value:0.719
+{"val": [0.716, 0.694, 0.717, 0.72], "test": [0.722, 0.709, 0.71, 0.719]}
+DS:IMDB-BINARY,seed:3,layer_num:3,epochs:20,lr:0.01, select test value:0.691
+{"val": [0.719, 0.705, 0.67, 0.695], "test": [0.691, 0.719, 0.701, 0.693]}
+DS:IMDB-BINARY,seed:4,layer_num:3,epochs:20,lr:0.01, select test value:0.717
+{"val": [0.679, 0.708, 0.735, 0.725], "test": [0.72, 0.723, 0.717, 0.727]}

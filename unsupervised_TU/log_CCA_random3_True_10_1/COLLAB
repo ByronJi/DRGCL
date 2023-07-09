@@ -1,0 +1,10 @@
+DS:COLLAB,seed:0,layer_num:3,epochs:20,lr:0.01, select test value:0.694
+{"val": [0.6918, 0.7, 0.701, 0.7068], "test": [0.6934, 0.7028, 0.6988, 0.694]}
+DS:COLLAB,seed:1,layer_num:3,epochs:20,lr:0.01, select test value:0.6972
+{"val": [0.6964, 0.594, 0.6958, 0.7018], "test": [0.6984, 0.6098, 0.6954, 0.6972]}
+DS:COLLAB,seed:2,layer_num:3,epochs:20,lr:0.01, select test value:0.706
+{"val": [0.702, 0.7112, 0.7086, 0.7104], "test": [0.6994, 0.706, 0.7086, 0.7122]}
+DS:COLLAB,seed:3,layer_num:3,epochs:20,lr:0.01, select test value:0.7008
+{"val": [0.7078, 0.7092, 0.7046, 0.7048], "test": [0.699, 0.7008, 0.7006, 0.7002]}
+DS:COLLAB,seed:4,layer_num:3,epochs:20,lr:0.01, select test value:0.6908
+{"val": [0.6938, 0.6966, 0.689, 0.631], "test": [0.6926, 0.6908, 0.7006, 0.6344]}
