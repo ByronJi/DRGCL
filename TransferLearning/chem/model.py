@@ -19,9 +19,7 @@ class GINConv(MessagePassing):
     Args:
         emb_dim (int): dimensionality of embeddings for nodes and edges.
         embed_input (bool): whether to embed input or not. 
-        
 
-    See https://arxiv.org/abs/1810.00826
     """
     def __init__(self, emb_dim, aggr = "add"):
         super(GINConv, self).__init__()
@@ -303,9 +301,7 @@ class GNN_graphpred(torch.nn.Module):
         JK (str): last, concat, max or sum.
         graph_pooling (str): sum, mean, max, attention, set2set
         gnn_type: gin, gcn, graphsage, gat
-        
-    See https://arxiv.org/abs/1810.00826
-    JK-net: https://arxiv.org/abs/1806.03536
+
     """
     def __init__(self, num_layer, emb_dim, num_tasks, JK = "last", drop_ratio = 0, graph_pooling = "mean", gnn_type = "gin"):
         super(GNN_graphpred, self).__init__()

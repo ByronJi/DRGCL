@@ -22,7 +22,7 @@ import shutil
 
 from tensorboardX import SummaryWriter
 
-from pretrain_mmgcl import MetaMaskBarlowTwins
+from pretrain_drgcl import MetaMaskBarlowTwins
 
 criterion = nn.BCEWithLogitsLoss(reduction = "none")
 
@@ -149,21 +149,20 @@ def main():
         raise ValueError("Invalid dataset name.")
 
     #set up dataset
-    # dataset = MoleculeDataset("dataset/" + args.dataset, dataset=args.dataset)
-    dataset = MoleculeDataset("/pub/data/hujie/zdata/data/CHEM/dataset/" + args.dataset, dataset=args.dataset)
+    dataset = MoleculeDataset("dataset/" + args.dataset, dataset=args.dataset)
     
     print(dataset)
 
  
     if args.split == "scaffold":
-        smiles_list = pd.read_csv('/pub/data/hujie/zdata/data/CHEM/dataset/' + args.dataset + '/processed/smiles.csv', header=None)[0].tolist()
+        smiles_list = pd.read_csv('dataset/' + args.dataset + '/processed/smiles.csv', header=None)[0].tolist()
         train_dataset, valid_dataset, test_dataset = scaffold_split(dataset, smiles_list, null_value=0, frac_train=0.8,frac_valid=0.1, frac_test=0.1)
         print("scaffold")
     elif args.split == "random":
         train_dataset, valid_dataset, test_dataset = random_split(dataset, null_value=0, frac_train=0.8,frac_valid=0.1, frac_test=0.1, seed = args.seed)
         print("random")
     elif args.split == "random_scaffold":
-        smiles_list = pd.read_csv('/pub/data/hujie/zdata/data/CHEM/dataset/' + args.dataset + '/processed/smiles.csv', header=None)[0].tolist()
+        smiles_list = pd.read_csv('dataset/' + args.dataset + '/processed/smiles.csv', header=None)[0].tolist()
         train_dataset, valid_dataset, test_dataset = random_scaffold_split(dataset, smiles_list, null_value=0, frac_train=0.8,frac_valid=0.1, frac_test=0.1, seed = args.seed)
         print("random scaffold")
     else:

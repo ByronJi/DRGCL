@@ -1,2 +1,0 @@
-DS:REDDIT-BINARY,seed:0,layer_num:3,epochs:20,lr:0.01, select test value:0.875
-{"val": [0.8425, 0.767, 0.868, 0.8455], "test": [0.8465, 0.7765, 0.875, 0.849]}

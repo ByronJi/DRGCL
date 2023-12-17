@@ -17,7 +17,6 @@ class GINConv(MessagePassing):
         emb_dim (int): dimensionality of embeddings for nodes and edges.
         input_layer (bool): whethe the GIN conv is applied to input layer or not. (Input node labels are uniform...)
 
-    See https://arxiv.org/abs/1810.00826
     """
 
     def __init__(self, emb_dim, aggr="add", input_layer=False):
@@ -239,9 +238,6 @@ class GNN(torch.nn.Module):
         max_pool_layer (int): the layer from which we use max pool rather than add pool for neighbor aggregation
         drop_ratio (float): dropout rate
         gnn_type: gin, gat, graphsage, gcn
-        
-    See https://arxiv.org/abs/1810.00826
-    JK-net: https://arxiv.org/abs/1806.03536
 
     Output:
         node representations
@@ -306,9 +302,7 @@ class GNN_graphpred(torch.nn.Module):
         drop_ratio (float): dropout rate
         JK (str): last, concat, max or sum.
         graph_pooling (str): sum, mean, max, attention, set2set
-        
-    See https://arxiv.org/abs/1810.00826
-    JK-net: https://arxiv.org/abs/1806.03536
+
     """
 
     def __init__(self, num_layer, emb_dim, num_tasks, JK="last", drop_ratio=0, graph_pooling="mean", gnn_type="gin"):
@@ -362,63 +356,6 @@ class GNN_graphpred(torch.nn.Module):
 
         return self.graph_pred_linear(graph_rep)
 
-
-# class Mask_GNN_graphpred(torch.nn.Module):
-#     """
-#     Extension of GIN to incorporate edge information by concatenation.
-#
-#     Args:
-#         num_layer (int): the number of GNN layers
-#         emb_dim (int): dimensionality of embeddings
-#         num_tasks (int): number of tasks in multi-task learning scenario
-#         drop_ratio (float): dropout rate
-#         JK (str): last, concat, max or sum.
-#         graph_pooling (str): sum, mean, max, attention, set2set
-#
-#     See https://arxiv.org/abs/1810.00826
-#     JK-net: https://arxiv.org/abs/1806.03536
-#     """
-#
-#     def __init__(self, num_layer, emb_dim, num_tasks, JK="last", drop_ratio=0, graph_pooling="mean", gnn_type="gin"):
-#         super(Mask_GNN_graphpred, self).__init__()
-#         self.num_layer = num_layer
-#         self.drop_ratio = drop_ratio
-#         self.JK = JK
-#         self.emb_dim = emb_dim
-#         self.num_tasks = num_tasks
-#
-#         if self.num_layer < 2:
-#             raise ValueError("Number of GNN layers must be greater than 1.")
-#
-#         self.gnn = GNN(num_layer, emb_dim, JK, drop_ratio, gnn_type=gnn_type)
-#
-#         # Different kind of graph pooling
-#         if graph_pooling == "sum":
-#             self.pool = global_add_pool
-#         elif graph_pooling == "mean":
-#             self.pool = global_mean_pool
-#         elif graph_pooling == "max":
-#             self.pool = global_max_pool
-#         elif graph_pooling == "attention":
-#             self.pool = GlobalAttention(gate_nn=torch.nn.Linear(emb_dim, 1))
-#         else:
-#             raise ValueError("Invalid graph pooling type.")
-#
-#         self.graph_pred_linear = torch.nn.Linear(2 * self.emb_dim, self.num_tasks)
-#
-#     def from_pretrained(self, model_file):
-#         self.gnn.load_state_dict(torch.load(model_file, map_location=lambda storage, loc: storage))
-#
-#     def forward(self, data):
-#         x, edge_index, edge_attr, batch = data.x, data.edge_index, data.edge_attr, data.batch
-#         node_representation = self.gnn(x, edge_index, edge_attr)
-#
-#         pooled = self.pool(node_representation, batch)
-#         center_node_rep = node_representation[data.center_node_idx]
-#
-#         graph_rep = torch.cat([pooled, center_node_rep], dim=1)
-#
-#         return self.graph_pred_linear(graph_rep)
 
 if __name__ == "__main__":
     pass

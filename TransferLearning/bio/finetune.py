@@ -20,7 +20,7 @@ import pandas as pd
 import os
 import pickle
 
-from pretrain_mmgcl import MetaMaskBarlowTwins
+from pretrain_drgcl import MetaMaskBarlowTwins
 
 criterion = nn.BCEWithLogitsLoss()
 

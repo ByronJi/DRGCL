@@ -32,7 +32,7 @@ parser.add_argument('--num-gc-layers', dest='num_gc_layers', type=int, default=3
 parser.add_argument('--hidden-dim', dest='hidden_dim', type=int, default=32,
                     help='')
 parser.add_argument('--aug', type=str, default='random4')
-parser.add_argument('--max-epochs', default=100, type=int)
+parser.add_argument('--max-epochs', default=20, type=int)
 parser.add_argument('--batch-size', default=32, type=int)
 parser.add_argument('--disable-meta', action="store_true",
                     help='whether using meta learning when training')
@@ -80,19 +80,15 @@ class MetaMaskBarlowTwins(nn.Module):
 
         model_optim.zero_grad()
         mask_optim.zero_grad()
-        # 计算一步梯度
+        # calculate a trial step
         loss.backward()
-        # copy梯度
+        # copy the gradients
         gradients = copy.deepcopy(
             [v.grad.data if v.grad is not None else None for v in self.mask_simclr.parameters()])
 
         model_optim.zero_grad()
         mask_optim.zero_grad()
-        # do virtual step: theta_1^+ = theta_1 - alpha * (primary loss + auxiliary loss)
-        # optimizer.param_groups：是长度为2的list，其中的元素是2个字典；
-        # optimizer.param_groups[0]：长度为6的字典，
-        # 包括[‘amsgrad’, ‘params’, ‘lr’, ‘betas’, ‘weight_decay’, ‘eps’]这6个参数
-        # optimizer.param_groups[1]：好像是表示优化器的状态的一个字典
+
         with torch.no_grad():
             for weight, weight_, d_p in zip(self.mask_simclr.parameters(),
                                             self.mask_simclr_.parameters(),
@@ -224,9 +220,7 @@ if __name__ == '__main__':
     batch_size = args.batch_size
     lr = args.lr
     DS = args.DS
-    # path = osp.join('~/桌面', 'datasets', DS)
-    path = osp.join('/data/jqr', 'datasets', DS)
-    # path = osp.join(osp.expanduser('~'), 'datasets', DS)
+    path = osp.join(osp.expanduser('~'), 'datasets', DS)
     print(path)
     enable_meta = not args.disable_meta
     enable_sigmoid = not args.disable_sigmoid
@@ -326,9 +320,9 @@ if __name__ == '__main__':
                 masks = model.auto_mask().detach().cpu().numpy()
                 print(masks)
                 emb = emb * masks[None, :]
-            if epoch == 20:
-                np.save("simclr_emb.npy", emb)
-                np.save("simclr_y.npy", y)
+            # if epoch == 20:
+            #     np.save("simclr_emb.npy", emb)
+            #     np.save("simclr_y.npy", y)
             acc_val, acc = evaluate_embedding(emb, y)
             acc_val = round(acc_val, 8)
             acc = round(acc, 8)
