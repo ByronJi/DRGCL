@@ -1,5 +1,5 @@
 # DRGCL
-Pytorch implementation for [Rethinking Dimensional Rationale in Graph Contrastive Learning from Causal Perspective](http://baidu.com)
+Pytorch implementation for [Rethinking Dimensional Rationale in Graph Contrastive Learning from Causal Perspective](https://arxiv.org/abs/2312.10401)
 
 Qirui Ji*, Jiangmeng Li*, Jie Hu, Rui Wang, Changwen Zheng, Fanjiang Xu
 
